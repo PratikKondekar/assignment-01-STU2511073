@@ -1,4 +1,12 @@
 -- ============================================================
+-- Task 5.1 — Cross-Format Queries using DuckDB
+-- File: part5-datalake/duckdb_queries.sql
+-- NOTE: DuckDB reads directly from raw files — no table creation needed
+-- Run these in DuckDB CLI or Python with duckdb library
+-- File paths: update to match where your files are stored
+-- ============================================================
+
+-- ============================================================
 -- Q1: List all customers along with the total number of orders they have placed
 -- ============================================================
 SELECT
