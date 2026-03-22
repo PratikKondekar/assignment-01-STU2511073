@@ -80,7 +80,8 @@ Product **P008 (Webcam)** exists in exactly **one row** in the entire dataset:
 **Scenario:**
 If order `ORD1185` is deleted (e.g., the customer cancels it or the record is archived), **all knowledge of the Webcam product is permanently lost** — its name, category, and price disappear with it. There is no separate Products table to preserve this information.
 
-Normalization Justification
+Normalization Justification:
+
 A manager might argue that keeping all data in one flat table like `orders_flat.csv` is simpler — fewer tables, no joins, easier to query at a glance. While this sounds appealing for very small datasets, it quickly breaks down in practice, as the anomalies we identified in this very dataset demonstrate.
 Consider what actually happened in `orders_flat.csv`: Sales representative SR01 (Deepak Joshi) ended up with two different office addresses stored across rows — `Nariman Point` in some rows and `Nariman Pt` in others. This is not a hypothetical risk; it is a real inconsistency that exists in the data right now. In a normalized schema, SR01's address is stored exactly once in the `sales_reps` table. Updating it requires changing a single row, and inconsistency becomes impossible by design.
 The delete anomaly makes the one-table argument even weaker. Product P008 (Webcam, ₹2,100) exists in only one order — ORD1185. If that order is cancelled and deleted, the company permanently loses all knowledge of that product. In the normalized schema, the `products` table preserves P008 independently of any order. No business would accept losing product catalog data simply because one order was removed.
